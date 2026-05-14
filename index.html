@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bull Rider Store — Moda Masculina e Feminina</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Oswald:wght@300;400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C96A;
+    --gold-dark: #8B6914;
+    --cream: #F5EDD8;
+    --dark: #1A1209;
+    --dark2: #2C1F0A;
+    --brown: #4A2E0A;
+    --text: #2C1F0A;
+    --white: #FDFAF3;
+    --accent: #8B1A1A;
+  }
+
+  /* TEMA CLARO (padrão) */
+  body.theme-light {
+    --bg: #F5EDD8;
+    --bg2: #EDE0C4;
+    --card-bg: #FDFAF3;
+    --text-main: #2C1F0A;
+    --nav-bg: #1A1209;
+  }
+
+  /* TEMA ESCURO */
+  body.theme-dark {
+    --bg: #1A1209;
+    --bg2: #2C1F0A;
+    --card-bg: #2C1F0A;
+    --text-main: #F5EDD8;
+    --nav-bg: #0D0804;
+  }
+
+  /* TEMA VERMELHO */
+  body.theme-red {
+    --bg: #1A0808;
+    --bg2: #2C0A0A;
+    --card-bg: #2C0A0A;
+    --text-main: #F5EDD8;
+    --nav-bg: #0D0404;
+    --gold: #C9A84C;
+    --accent: #C9513A;
+  }
+
+  /* TEMA VERDE */
+  body.theme-green {
+    --bg: #0A1A0A;
+    --bg2: #0F2B0F;
+    --card-bg: #0F2B0F;
+    --text-main: #F5EDD8;
+    --nav-bg: #060D06;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--bg);
+    color: var(--text-main);
+    transition: background 0.4s, color 0.4s;
+  }
+
+  /* ── THEME SWITCHER ── */
+  .theme-bar {
+    background: var(--dark);
+    padding: 8px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #aaa;
+    text-transform: uppercase;
+  }
+  .theme-btn {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: border 0.2s, transform 0.2s;
+  }
+  .theme-btn:hover, .theme-btn.active { border-color: var(--gold); transform: scale(1.2); }
+  .t-light { background: #F5EDD8; }
+  .t-dark  { background: #2C1F0A; }
+  .t-red   { background: #8B1A1A; }
+  .t-green { background: #1A4A1A; }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--nav-bg);
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid var(--gold-dark);
+    box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 0;
+  }
+  .logo-circle {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: #F5EDD8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--gold);
+    overflow: hidden;
+  }
+  .logo-circle img { width: 100%; height: 100%; object-fit: cover; }
+  .logo-text { font-family: 'Oswald', sans-serif; }
+  .logo-text span:first-child {
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 3px;
+  }
+  .logo-text span:last-child {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: #999;
+    text-transform: uppercase;
+  }
+  .nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: #ccc;
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+  }
+  .nav-links a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+  .nav-actions { display: flex; gap: 14px; align-items: center; }
+  .nav-icon {
+    color: #ccc;
+    font-size: 20px;
+    cursor: pointer;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav-icon:hover { color: var(--gold); }
+  .cart-badge {
+    position: absolute;
+    top: -6px; right: -8px;
+    background: var(--gold);
+    color: var(--dark);
+    font-size: 9px;
+    font-weight: 700;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 90vh;
+    background: var(--dark);
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .hero-texture {
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(201,168,76,0.03) 2px, rgba(201,168,76,0.03) 4px),
+      repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(201,168,76,0.03) 2px, rgba(201,168,76,0.03) 4px);
+  }
+  .hero-bg-text {
+    position: absolute;
+    font-family: 'Oswald', sans-serif;
+    font-size: 260px;
+    font-weight: 700;
+    color: rgba(201,168,76,0.04);
+    letter-spacing: -10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 80px;
+    max-width: 700px;
+  }
+  .hero-tag {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 72px;
+    line-height: 1.0;
+    color: var(--cream);
+    margin-bottom: 24px;
+  }
+  .hero h1 em {
+    color: var(--gold);
+    font-style: italic;
+  }
+  .hero p {
+    font-size: 16px;
+    color: #aaa;
+    line-height: 1.7;
+    margin-bottom: 40px;
+    max-width: 480px;
+  }
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--dark);
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 16px 36px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--gold);
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 15px 36px;
+    border: 1.5px solid var(--gold);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    font-weight: 600;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-outline:hover { background: rgba(201,168,76,0.1); }
+  .hero-img-side {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 45%;
+    background: linear-gradient(135deg, #2C1F0A 0%, #1A1209 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .hero-logo-big {
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    background: #F5EDD8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid var(--gold);
+    box-shadow: 0 0 80px rgba(201,168,76,0.3);
+    overflow: hidden;
+    animation: float 4s ease-in-out infinite;
+  }
+  .hero-logo-big img { width: 100%; height: 100%; object-fit: cover; }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-16px); }
+  }
+
+  /* ── BANNER STRIP ── */
+  .banner-strip {
+    background: var(--gold);
+    padding: 12px 0;
+    overflow: hidden;
+  }
+  .strip-inner {
+    display: flex;
+    gap: 60px;
+    animation: marquee 20s linear infinite;
+    white-space: nowrap;
+  }
+  .strip-item {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: var(--dark);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .strip-item::before { content: '✦'; font-size: 10px; }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ── CATEGORIES ── */
+  .section { padding: 80px 60px; }
+  .section-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  .section-tag {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    color: var(--text-main);
+    line-height: 1.2;
+  }
+  .section-divider {
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+    margin: 16px auto 0;
+  }
+
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .cat-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 30px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .cat-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+  .cat-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.2); border-color: var(--gold); }
+  .cat-card:hover::before { transform: scaleX(1); }
+  .cat-icon { font-size: 40px; margin-bottom: 14px; }
+  .cat-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+    color: var(--text-main);
+    text-transform: uppercase;
+  }
+  .cat-count {
+    font-size: 12px;
+    color: var(--gold);
+    margin-top: 6px;
+  }
+
+  /* ── PRODUCTS ── */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .product-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(201,168,76,0.15);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+  }
+  .product-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.25); }
+  .product-img {
+    height: 280px;
+    background: linear-gradient(135deg, #2C1F0A, #4A3010);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 70px;
+    position: relative;
+    overflow: hidden;
+  }
+  .product-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 50%);
+  }
+  .product-badge {
+    position: absolute;
+    top: 14px; left: 14px;
+    background: var(--gold);
+    color: var(--dark);
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    padding: 4px 10px;
+    text-transform: uppercase;
+    font-weight: 600;
+    z-index: 2;
+  }
+  .product-info { padding: 20px; }
+  .product-cat {
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .product-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--text-main);
+    margin-bottom: 12px;
+  }
+  .product-price {
+    font-family: 'Oswald', sans-serif;
+    font-size: 22px;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .product-price span {
+    font-size: 13px;
+    color: #999;
+    text-decoration: line-through;
+    margin-left: 8px;
+    font-weight: 300;
+  }
+  .product-actions { display: flex; gap: 10px; }
+  .btn-cart {
+    flex: 1;
+    background: var(--gold);
+    color: var(--dark);
+    border: none;
+    padding: 11px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+  .btn-cart:hover { background: var(--gold-light); }
+  .btn-wpp {
+    background: #25D366;
+    color: white;
+    border: none;
+    padding: 11px 14px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: opacity 0.2s;
+  }
+  .btn-wpp:hover { opacity: 0.85; }
+
+  /* ── BANNER DESTAQUE ── */
+  .promo-banner {
+    margin: 0 60px 80px;
+    background: var(--dark2);
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+  }
+  .promo-banner::before {
+    content: 'SALE';
+    position: absolute;
+    right: -20px; top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    font-family: 'Oswald', sans-serif;
+    font-size: 120px;
+    font-weight: 700;
+    color: rgba(201,168,76,0.06);
+    pointer-events: none;
+  }
+  .promo-text { position: relative; z-index: 1; }
+  .promo-tag {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .promo-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    color: var(--cream);
+    margin-bottom: 10px;
+  }
+  .promo-sub { color: #aaa; font-size: 15px; }
+  .promo-cta { position: relative; z-index: 1; text-align: right; }
+  .promo-num {
+    font-family: 'Oswald', sans-serif;
+    font-size: 100px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+
+  /* ── FEATURES ── */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.15);
+    margin: 0 60px 80px;
+  }
+  .feature-item {
+    background: var(--card-bg);
+    padding: 36px 28px;
+    text-align: center;
+  }
+  .feature-icon { font-size: 36px; margin-bottom: 14px; }
+  .feature-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: var(--text-main);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .feature-desc { font-size: 13px; color: #999; line-height: 1.5; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    border-top: 1px solid rgba(201,168,76,0.2);
+    padding: 60px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+  .footer-brand .logo-circle { width: 70px; height: 70px; margin-bottom: 16px; }
+  .footer-brand p { color: #999; font-size: 13px; line-height: 1.7; margin-top: 10px; }
+  .footer-col h4 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .footer-col a {
+    display: block;
+    color: #999;
+    font-size: 13px;
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--gold); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-bottom p { color: #666; font-size: 12px; }
+  .footer-bottom span { color: var(--gold); }
+  .social-links { display: flex; gap: 14px; }
+  .social-link {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(201,168,76,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 14px;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+    cursor: pointer;
+  }
+  .social-link:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ── WPP FLOAT ── */
+  .wpp-float {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 999;
+    background: #25D366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    box-shadow: 0 8px 30px rgba(37,211,102,0.5);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+  }
+  .wpp-float:hover { transform: scale(1.1); box-shadow: 0 12px 40px rgba(37,211,102,0.6); }
+  .wpp-label {
+    position: absolute;
+    right: 72px;
+    background: white;
+    color: #333;
+    font-size: 12px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 1px;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+  }
+  .wpp-float:hover .wpp-label { opacity: 1; }
+
+  /* ── CART SIDEBAR ── */
+  .cart-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 200;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .cart-overlay.open { opacity: 1; pointer-events: all; }
+  .cart-sidebar {
+    position: fixed;
+    right: -420px;
+    top: 0; bottom: 0;
+    width: 420px;
+    background: #1A1209;
+    z-index: 201;
+    transition: right 0.3s;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid rgba(201,168,76,0.2);
+  }
+  .cart-sidebar.open { right: 0; }
+  .cart-head {
+    padding: 24px 28px;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .cart-head h3 {
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 3px;
+    font-size: 16px;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+  .cart-close { background: none; border: none; color: #aaa; font-size: 22px; cursor: pointer; }
+  .cart-items { flex: 1; overflow-y: auto; padding: 24px 28px; }
+  .cart-item {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .cart-item-img {
+    width: 70px; height: 70px;
+    background: #2C1F0A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    flex-shrink: 0;
+  }
+  .cart-item-info { flex: 1; }
+  .cart-item-name { font-size: 14px; color: #ddd; margin-bottom: 6px; }
+  .cart-item-price { font-family: 'Oswald', sans-serif; color: var(--gold); font-size: 16px; }
+  .cart-item-qty {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+  }
+  .qty-btn {
+    width: 26px; height: 26px;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold);
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .qty-num { font-family: 'Oswald', sans-serif; color: #ddd; font-size: 14px; min-width: 20px; text-align: center; }
+  .cart-footer { padding: 24px 28px; border-top: 1px solid rgba(201,168,76,0.15); }
+  .cart-total {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    color: var(--cream);
+  }
+  .cart-total span:last-child { color: var(--gold); font-size: 22px; }
+  .btn-checkout {
+    width: 100%;
+    background: var(--gold);
+    color: var(--dark);
+    border: none;
+    padding: 16px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 600;
+    margin-bottom: 10px;
+    transition: background 0.2s;
+  }
+  .btn-checkout:hover { background: var(--gold-light); }
+  .btn-wpp-checkout {
+    width: 100%;
+    background: #25D366;
+    color: white;
+    border: none;
+    padding: 14px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: opacity 0.2s;
+  }
+  .btn-wpp-checkout:hover { opacity: 0.9; }
+  .cart-empty { text-align: center; padding: 60px 20px; color: #666; }
+  .cart-empty div { font-size: 50px; margin-bottom: 14px; }
+  .cart-empty p { font-family: 'Oswald', sans-serif; letter-spacing: 2px; font-size: 13px; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(201,168,76,0.3); border-radius: 2px; }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hero { min-height: 70vh; }
+    .hero-content { padding: 0 30px; max-width: 100%; }
+    .hero h1 { font-size: 42px; }
+    .hero-img-side { display: none; }
+    .section { padding: 50px 20px; }
+    .cat-grid { grid-template-columns: repeat(2,1fr); }
+    .products-grid { grid-template-columns: 1fr; }
+    .promo-banner { margin: 0 20px 50px; flex-direction: column; gap: 20px; }
+    .features-grid { grid-template-columns: repeat(2,1fr); margin: 0 20px 50px; }
+    .footer-grid { grid-template-columns: 1fr; }
+    footer { padding: 40px 24px; }
+  }
+</style>
+</head>
+<body class="theme-dark">
+
+<!-- THEME BAR -->
+<div class="theme-bar">
+  <span>Tema:</span>
+  <div class="theme-btn t-light" title="Claro" onclick="setTheme('light')"></div>
+  <div class="theme-btn t-dark active" title="Escuro" onclick="setTheme('dark')"></div>
+  <div class="theme-btn t-red" title="Rústico" onclick="setTheme('red')"></div>
+  <div class="theme-btn t-green" title="Campo" onclick="setTheme('green')"></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="logo-circle">
+      <img src="img/clinte001.jpeg" alt="Bull Rider Store">
+    </div>
+    <div class="logo-text">
+      <span>Bull Rider Store</span>
+      <span>Moda Masculina e Feminina</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Início</a></li>
+    <li><a href="#">Masculino</a></li>
+    <li><a href="#">Feminino</a></li>
+    <li><a href="#">Calçados</a></li>
+    <li><a href="#">Promoções</a></li>
+    <li><a href="#">Contato</a></li>
+  </ul>
+  <div class="nav-actions">
+    <div class="nav-icon" onclick="toggleCart()">🛒<div class="cart-badge" id="badge">0</div></div>
+    <div class="nav-icon">🔍</div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-texture"></div>
+  <div class="hero-bg-text">COUNTRY</div>
+  <div class="hero-content">
+    <div class="hero-tag">Nova Coleção 2025</div>
+    <h1>Moda <em>Country</em><br>do Jeito Certo</h1>
+    <p>Roupas, botas e acessórios para quem vive o estilo country com autenticidade. Do campo à cidade, com muito estilo.</p>
+    <div class="hero-btns">
+      <a href="#produtos" class="btn-primary">Ver Coleção</a>
+      <a href="#" class="btn-outline" onclick="openWpp()">📱 Falar no WhatsApp</a>
+    </div>
+  </div>
+  <div class="hero-img-side">
+    <div class="hero-logo-big">
+      <img src="img/clinte001.jpeg" alt="Bull Rider Store">
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="banner-strip">
+  <div class="strip-inner" id="strip">
+    <div class="strip-item">Frete Grátis acima de R$299</div>
+    <div class="strip-item">Parcelamento em até 12x</div>
+    <div class="strip-item">Troca Fácil em 30 dias</div>
+    <div class="strip-item">Atendimento pelo WhatsApp</div>
+    <div class="strip-item">Marcas Originais</div>
+    <div class="strip-item">Frete Grátis acima de R$299</div>
+    <div class="strip-item">Parcelamento em até 12x</div>
+    <div class="strip-item">Troca Fácil em 30 dias</div>
+    <div class="strip-item">Atendimento pelo WhatsApp</div>
+    <div class="strip-item">Marcas Originais</div>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="section" style="background: var(--bg2);">
+  <div class="section-header">
+    <div class="section-tag">Navegue por</div>
+    <h2 class="section-title">Nossas Categorias</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="cat-grid">
+    <div class="cat-card">
+      <div class="cat-icon">👕</div>
+      <div class="cat-name">Camisas</div>
+      <div class="cat-count">32 produtos</div>
+    </div>
+    <div class="cat-card">
+      <div class="cat-icon">👖</div>
+      <div class="cat-name">Calças</div>
+      <div class="cat-count">24 produtos</div>
+    </div>
+    <div class="cat-card">
+      <div class="cat-icon">🥾</div>
+      <div class="cat-name">Botas</div>
+      <div class="cat-count">18 produtos</div>
+    </div>
+    <div class="cat-card">
+      <div class="cat-icon">🤠</div>
+      <div class="cat-name">Chapéus</div>
+      <div class="cat-count">15 produtos</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="section" id="produtos">
+  <div class="section-header">
+    <div class="section-tag">Mais Vendidos</div>
+    <h2 class="section-title">Destaques da Semana</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="products-grid">
+
+    <div class="product-card">
+      <div class="product-img">
+        👕
+        <div class="product-badge">Novo</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Masculino</div>
+        <div class="product-name">Camisa Country Flanelada</div>
+        <div class="product-price">R$ 189,90 <span>R$ 239,90</span></div>
+        <div class="product-actions">
+          <button class="btn-cart" onclick="addToCart('Camisa Country Flanelada', 189.90, '👕')">+ Carrinho</button>
+          <button class="btn-wpp" title="Pedir no WhatsApp" onclick="openWpp()">💬</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        👗
+        <div class="product-badge">Destaque</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Feminino</div>
+        <div class="product-name">Vestido Rodeio Boho</div>
+        <div class="product-price">R$ 219,90 <span>R$ 280,00</span></div>
+        <div class="product-actions">
+          <button class="btn-cart" onclick="addToCart('Vestido Rodeio Boho', 219.90, '👗')">+ Carrinho</button>
+          <button class="btn-wpp" title="Pedir no WhatsApp" onclick="openWpp()">💬</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        🥾
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Calçados</div>
+        <div class="product-name">Bota Texana Premium</div>
+        <div class="product-price">R$ 389,90 <span>R$ 450,00</span></div>
+        <div class="product-actions">
+          <button class="btn-cart" onclick="addToCart('Bota Texana Premium', 389.90, '🥾')">+ Carrinho</button>
+          <button class="btn-wpp" title="Pedir no WhatsApp" onclick="openWpp()">💬</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        🤠
+        <div class="product-badge">-20%</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Acessórios</div>
+        <div class="product-name">Chapéu Country Palha</div>
+        <div class="product-price">R$ 129,90 <span>R$ 159,90</span></div>
+        <div class="product-actions">
+          <button class="btn-cart" onclick="addToCart('Chapéu Country Palha', 129.90, '🤠')">+ Carrinho</button>
+          <button class="btn-wpp" title="Pedir no WhatsApp" onclick="openWpp()">💬</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        👖
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Masculino</div>
+        <div class="product-name">Calça Jeans Rodeio Slim</div>
+        <div class="product-price">R$ 259,90 <span>R$ 299,90</span></div>
+        <div class="product-actions">
+          <button class="btn-cart" onclick="addToCart('Calça Jeans Rodeio', 259.90, '👖')">+ Carrinho</button>
+          <button class="btn-wpp" title="Pedir no WhatsApp" onclick="openWpp()">💬</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        👜
+        <div class="product-badge">Novo</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Feminino</div>
+        <div class="product-name">Colete Jeans Feminino</div>
+        <div class="product-price">R$ 179,90 <span>R$ 219,90</span></div>
+        <div class="product-actions">
+          <button class="btn-cart" onclick="addToCart('Colete Jeans Feminino', 179.90, '👜')">+ Carrinho</button>
+          <button class="btn-wpp" title="Pedir no WhatsApp" onclick="openWpp()">💬</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROMO BANNER -->
+<div class="promo-banner">
+  <div class="promo-text">
+    <div class="promo-tag">✦ Oferta Especial</div>
+    <div class="promo-title">Liquidação<br>de Verão</div>
+    <div class="promo-sub">Peças selecionadas com desconto imperdível</div>
+    <br>
+    <a href="#" class="btn-primary" style="display:inline-block; margin-top:10px;">Ver Promoções</a>
+  </div>
+  <div class="promo-cta">
+    <div class="promo-num">30%</div>
+    <div style="font-family:'Oswald',sans-serif; color:#aaa; letter-spacing:3px; font-size:12px; text-transform:uppercase;">de desconto</div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<div class="features-grid">
+  <div class="feature-item">
+    <div class="feature-icon">🚚</div>
+    <div class="feature-title">Frete Grátis</div>
+    <div class="feature-desc">Compras acima de R$ 299,00</div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-icon">🔒</div>
+    <div class="feature-title">Compra Segura</div>
+    <div class="feature-desc">Pagamento 100% protegido</div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-icon">🔄</div>
+    <div class="feature-title">Troca Fácil</div>
+    <div class="feature-desc">Até 30 dias após a compra</div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-icon">💬</div>
+    <div class="feature-title">Suporte</div>
+    <div class="feature-desc">Atendimento via WhatsApp</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo-circle">
+        <img src="img/clinte001.jpeg" alt="Bull Rider Store">
+      </div>
+      <div class="logo-text" style="margin-top:10px;">
+        <span style="font-family:'Oswald',sans-serif; font-size:18px; font-weight:700; color:var(--gold); letter-spacing:2px;">Bull Rider Store</span>
+      </div>
+      <p>Moda country masculina e feminina com qualidade e estilo. Vista sua personalidade.</p>
+      <div class="social-links" style="margin-top:18px;">
+        <div class="social-link">📸</div>
+        <div class="social-link">👍</div>
+        <div class="social-link">💬</div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Categorias</h4>
+      <a href="#">Masculino</a>
+      <a href="#">Feminino</a>
+      <a href="#">Calçados</a>
+      <a href="#">Acessórios</a>
+      <a href="#">Promoções</a>
+    </div>
+    <div class="footer-col">
+      <h4>Informações</h4>
+      <a href="#">Sobre Nós</a>
+      <a href="#">Formas de Pagamento</a>
+      <a href="#">Política de Troca</a>
+      <a href="#">Prazo de Entrega</a>
+      <a href="#">Contato</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contato</h4>
+      <a href="#">📱 (xx) 9xxxx-xxxx</a>
+      <a href="#">📧 contato@bullrider.com</a>
+      <a href="#">📍 Sua cidade - TO</a>
+      <a href="#">💬 WhatsApp</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 <span>Bull Rider Store</span>. Todos os direitos reservados.</p>
+    <p style="color:#555;">Desenvolvido com ❤️ para o mundo country</p>
+  </div>
+</footer>
+
+<!-- WPP FLOAT -->
+<a class="wpp-float" onclick="openWpp()" href="#">
+  💬
+  <span class="wpp-label">Falar no WhatsApp</span>
+</a>
+
+<!-- CART SIDEBAR -->
+<div class="cart-overlay" id="overlay" onclick="toggleCart()"></div>
+<div class="cart-sidebar" id="cart">
+  <div class="cart-head">
+    <h3>🛒 Meu Carrinho</h3>
+    <button class="cart-close" onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty">
+      <div>🛒</div>
+      <p>Carrinho vazio</p>
+    </div>
+  </div>
+  <div class="cart-footer" id="cartFooter" style="display:none;">
+    <div class="cart-total">
+      <span>Total:</span>
+      <span id="cartTotal">R$ 0,00</span>
+    </div>
+    <button class="btn-checkout">Finalizar Compra 🔒</button>
+    <button class="btn-wpp-checkout" onclick="openWpp()">💬 Fechar Pedido no WhatsApp</button>
+  </div>
+</div>
+
+<script>
+  // ── THEME ──
+  function setTheme(t) {
+    document.body.className = 'theme-' + t;
+    document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+
+  // ── CART ──
+  let cart = [];
+
+  function toggleCart() {
+    document.getElementById('cart').classList.toggle('open');
+    document.getElementById('overlay').classList.toggle('open');
+  }
+
+  function addToCart(name, price, icon) {
+    const existing = cart.find(i => i.name === name);
+    if (existing) { existing.qty++; }
+    else { cart.push({ name, price, icon, qty: 1 }); }
+    renderCart();
+    // Open cart
+    document.getElementById('cart').classList.add('open');
+    document.getElementById('overlay').classList.add('open');
+  }
+
+  function changeQty(name, delta) {
+    const item = cart.find(i => i.name === name);
+    if (!item) return;
+    item.qty += delta;
+    if (item.qty <= 0) cart = cart.filter(i => i.name !== name);
+    renderCart();
+  }
+
+  function renderCart() {
+    const el = document.getElementById('cartItems');
+    const footer = document.getElementById('cartFooter');
+    const badge = document.getElementById('badge');
+    const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+    const count = cart.reduce((s, i) => s + i.qty, 0);
+    badge.textContent = count;
+    if (cart.length === 0) {
+      el.innerHTML = '<div class="cart-empty"><div>🛒</div><p>Carrinho vazio</p></div>';
+      footer.style.display = 'none';
+      return;
+    }
+    footer.style.display = 'block';
+    document.getElementById('cartTotal').textContent = 'R$ ' + total.toFixed(2).replace('.', ',');
+    el.innerHTML = cart.map(i => `
+      <div class="cart-item">
+        <div class="cart-item-img">${i.icon}</div>
+        <div class="cart-item-info">
+          <div class="cart-item-name">${i.name}</div>
+          <div class="cart-item-price">R$ ${(i.price * i.qty).toFixed(2).replace('.', ',')}</div>
+          <div class="cart-item-qty">
+            <button class="qty-btn" onclick="changeQty('${i.name}', -1)">−</button>
+            <span class="qty-num">${i.qty}</span>
+            <button class="qty-btn" onclick="changeQty('${i.name}', 1)">+</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // ── WPP ──
+  function openWpp() {
+    const num = '5563992981950'; // número real aqui
+    const msg = encodeURIComponent('Olá! Vi os produtos na loja e quero fazer um pedido. 🤠');
+    window.open('https://wa.me/' + num + '?text=' + msg, '_blank');
+  }
+</script>
+</body>
+</html>
